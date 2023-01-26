@@ -3,3 +3,8 @@
     margin: 10px;
     border: 2px solid black;
 }
+
+.free {
+    color: gray;
+    text-decoration: line-through;
+}
