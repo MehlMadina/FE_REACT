@@ -4,7 +4,7 @@ export default function AddProduct({ createProduct }) {
   const onSubmit = (event) => {
     event.preventDefault();
     const { title, price } = event.target;
-    createProduct(title.value, price.value);
+    createProduct(title.value, +price.value);
     title.value = "";
     price.value = "";
   };

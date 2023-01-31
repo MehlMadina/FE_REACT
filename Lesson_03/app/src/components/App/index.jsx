@@ -1,35 +1,71 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddProduct from "../AddProduct";
 import Product from "../Product";
 
 function App() {
-  const defaultProducts = [
-    { id: 1, title: "велосипед", price: 45000 },
-    { id: 2, title: "ролики", price: 25000 },
-    { id: 3, title: "самокат", price: 3000 },
-    { id: 4, title: "скейт", price: 13000 },
-    { id: 5, title: "лыжи", price: 27000 },
-    { id: 6, title: "коньки", price: 15000 },
-  ];
 
-  const [products, setProducts] = useState(defaultProducts);
+//  useEffect(() => {
+//   fetch('https://fakestoreapi.com/products')
+//     .then(resp => resp.json())
+//       .then(data => {
+//         const newArr = data.map(({id, title, price}) => ({id, title, price}));
+//         setProducts(newArr);
+//       });
+//  }, []);
 
 
-  const deleteProduct = (delId) => {
-    const newArr = products.filter(({ id }) => id !== delId);
+
+useEffect(() => {
+  (async () => {
+    const resp = await fetch("https://fakestoreapi.com/products");
+    const data = await resp.json();
+    const newArr = data.map(({ id, title, price }) => ({ id, title, price }));
     setProducts(newArr);
-  };
+  })();
+
+}, []);
+ 
+
+
+  const [products, setProducts] = useState([]);
 
 
 
-  const createProduct = (title, price) => {
-    const newProduct = {
-      id: Date.now(),
-      title,
-      price,
-    };
-    const newArr = [...products, newProduct];
+const deleteProduct = async (delId) => {
+  try {
+    const resp = await fetch(`https://fakestoreapi.com/products/${delId}`, {
+      method: "DELETE",
+    });
+    const { id } = await resp.json();
+
+    const newArr = products.filter((product) => product.id !== id);
     setProducts(newArr);
+  } catch {
+    console.log("Что-то пошло не так");
+  }
+};
+
+
+
+  // const createProduct = (title, price) => {
+  //   fetch("https://fakestoreapi.com/products", {
+  //     method: "POST",
+  //     body: JSON.stringify({ title, price }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then(({ id }) => setProducts([...products, { id, title, price }]));
+  // };
+
+
+
+  const createProduct = async (title, price) => {
+    price = +price.toFixed(2);
+    const resp = await fetch("https://fakestoreapi.com/products", {
+      method: "POST",
+      body: JSON.stringify({ title, price })
+    });
+    const { id } = await resp.json();
+    setProducts([...products, { id, title, price }]);
   };
 
 
@@ -47,6 +83,7 @@ function App() {
   // };
 
 
+
   const changePrice = (changeId, value) => {
     const target = products.find(({id}) => id === changeId);
 
@@ -55,6 +92,7 @@ function App() {
     } else {
       target.price += value;
     }
+    target.price = +target.price.toFixed(2);
     setProducts([...products]);
   }
 
