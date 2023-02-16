@@ -30,7 +30,7 @@ export default function ProductContainer() {
 
   useEffect(() => {
     const products_ids = products.map(({ id }) => id);
-    setBasket(basket.filter(({ id }) => products_ids.includes(id)));
+    setBasket(pre => pre.filter(({ id }) => products_ids.includes(id)));
   }, [products]);
 
 

@@ -1,7 +1,6 @@
 .item {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 300px;
     border: 2px solid black;
     border-radius: 15px;
     margin: 10px;
@@ -10,7 +9,11 @@
 
 .count_btn {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
