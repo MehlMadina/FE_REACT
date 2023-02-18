@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
-import BasketCalculation from "../BasketCalculation";
 import BasketContainer from "../BasketContainer";
+import Modal from "../Modal";
 import Products from "../Products";
 import s from "./style.module.css";
 
 export default function ProductContainer() {
   
-  const [products, setProducts] = useState([]);
-  const [basket, setBasket] = useState([]);
+  const [products, setProducts] = useState(null);
+  const [basket, setBasket] = useState(
+    () => JSON.parse(localStorage.getItem("basket")) ?? []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("basket", JSON.stringify(basket));
+  }, [basket]);
 
 
   useEffect(() => {
@@ -20,15 +26,25 @@ export default function ProductContainer() {
           title,
           price,
           description,
-          image: images[0],
+          images,
+          imageIndex: 0
         })
       );
       setProducts(result);
     })();
   }, []);
 
+  
+  const changePhoto = productId => {
+    products.find(({id}) => id === productId).imageIndex++;
+    setProducts([...products]);
+  };
+
 
   useEffect(() => {
+    if (products === null) {
+      return
+    }
     const products_ids = products.map(({ id }) => id);
     setBasket(pre => pre.filter(({ id }) => products_ids.includes(id)));
   }, [products]);
@@ -71,29 +87,45 @@ export default function ProductContainer() {
     }
   };
 
-
   const clearBasket = () => setBasket([]);
 
+  const [modal, setModal] = useState(true);
+
+  const openWindow = () => setModal(true);
+  const closeWindow = () => setModal(false);
 
   const deleteFromBasket = (value) =>
     setBasket(basket.filter(({ id }) => id !== value));
 
   return (
     <div>
-      <BasketContainer
+      <button onClick={openWindow}>Open basket ({basket.reduce((pre, {count}) => pre + count, 0)})</button>
+      {
+         modal ?
+      <Modal closeWindow={closeWindow}> 
+        <BasketContainer
         basket={basket}
         decrement={decrement}
         increment={increment}
         deleteFromBasket={deleteFromBasket}
+        clearBasket={clearBasket}
       />
-      <BasketCalculation basket={basket} clearBasket={clearBasket} />
+      </Modal>
+      : ''
+    }
+      
+      
       <div className={s.container}>
-        {products.map((el) => (
+        {
+          products === null
+          ? 'Товары грузятся'
+          : products.map((el) => (
           <Products
             key={el.id}
             {...el}
             delProducts={delProducts}
             addToBasket={addToBasket}
+            changePhoto={changePhoto}
           />
         ))}
       </div>

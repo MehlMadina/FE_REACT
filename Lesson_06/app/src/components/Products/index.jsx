@@ -6,13 +6,15 @@ export default function Products({
   title,
   description,
   price,
-  image,
+  images,
+  imageIndex,
   delProducts,
   addToBasket,
+  changePhoto
 }) {
   return (
     <div className={s.card}>
-      <img src={image} alt={title} />
+      <img src={images[imageIndex % images.length]} onMouseEnter={() => changePhoto(id)} alt={title} />
       <div className={s.info}>
         <p>{title}</p>
         <p>{description}</p>

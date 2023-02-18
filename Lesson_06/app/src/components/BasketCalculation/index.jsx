@@ -10,7 +10,7 @@ export default function BasketCalculation({ basket, clearBasket }) {
 
   return (
     <div className={s.block}>
-      <p>Total sum: {totalSum}</p>
+      <p>Total sum: {totalSum}$</p>
       <p>Total count: {totalCount}</p>
       <button onClick={clearBasket}>Delete basket</button>
     </div>
