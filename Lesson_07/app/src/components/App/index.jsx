@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import AddForm from "../AddForm";
 import MinusForm from "../MinusForm";
+import TasksContainer from "../TasksContainer";
 
 function App() {
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.clicker);
   const dispatch = useDispatch();
 
   const increment = () => {
@@ -26,6 +27,8 @@ function App() {
       <AddForm />
       <br />
       <MinusForm />
+      <br />
+      <TasksContainer />
     </div>
   );
 }

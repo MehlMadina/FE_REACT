@@ -1,4 +1,10 @@
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { clickerReducer } from './reducer/clickerReducer';
+import { tasksReducer } from './reducer/tasksReducer';
 
-export const store = createStore(clickerReducer);
+const rootReducer = combineReducers({
+  clicker: clickerReducer,
+  tasks: tasksReducer,
+});
+
+export const store = createStore(rootReducer);
