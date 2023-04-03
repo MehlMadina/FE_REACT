@@ -1,0 +1,19 @@
+
+.basket_container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 17px 0;
+    padding: 5px 10px;
+    width: 300px;
+    text-transform: uppercase;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}

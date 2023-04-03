@@ -11,6 +11,9 @@ export default function Product({ id, title, price }) {
       <button onClick={() => dispatch({ type: "DELETE", payload: id })}>
         Delete
       </button>
+      <button onClick={() => dispatch({type: 'ADD_BASKET', payload: id})}>
+        Add
+      </button>
     </div>
   );
 }

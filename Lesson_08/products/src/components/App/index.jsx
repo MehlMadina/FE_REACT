@@ -1,12 +1,13 @@
-import AddProduct from "../AddProduct";
-import ProductsList from "../ProductsList";
+
+import BasketList from "../BasketList";
+import ProductsContainer from "../ProductsContainer";
 
 
 function App() {
   return (
     <div>
-      <AddProduct />
-      <ProductsList />
+      <ProductsContainer />
+      <BasketList />
     </div>
   );
 }
