@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { addProductAction } from "../../store/reducer/productsReducer";
 
 export default function AddProduct() {
   const dispatch = useDispatch();
@@ -9,15 +10,17 @@ export default function AddProduct() {
 
     const { title, price, discount } = event.target;
 
-    dispatch({
-      type: "ADD",
-      payload: {
-        id: Date.now(),
-        title: title.value,
-        price: price.value,
-        discount: discount.value,
-      },
-    });
+    // dispatch({
+    //   type: "ADD",
+    //   payload: {
+    //     id: Date.now(),
+    //     title: title.value,
+    //     price: price.value,
+    //     discount: discount.value,
+    //   },
+    // });
+
+    dispatch(addProductAction(title.value, price.value, discount.value));
 
     console.log(title.value, price.value, discount.value);
 

@@ -1,6 +1,11 @@
 import React from "react";
 import s from "./style.module.css";
 import { useDispatch } from "react-redux";
+import {
+  decrementAction,
+  deleteAction,
+  incrementAction,
+} from "../../store/reducer/basketReducer";
 
 export default function BasketItem({ id, count }) {
   const dispatch = useDispatch();
@@ -10,13 +15,10 @@ export default function BasketItem({ id, count }) {
       <p>id: {id}</p>
       <p>count: {count}</p>
       <div className={s.btns}>
-        <button onClick={() => dispatch({ type: "DECREMENT", payload: id })}>
-          -
-        </button>
-        <button onClick={() => dispatch({ type: "INCREMENT", payload: id })}>
-          +
-        </button>
+        <button onClick={() => dispatch(decrementAction(id))}>-</button>
+        <button onClick={() => dispatch(incrementAction(id))}>+</button>
       </div>
+      <button onClick={() => dispatch(deleteAction(id))}>Delete</button>
     </div>
   );
 }
