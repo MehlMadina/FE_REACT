@@ -1,4 +1,5 @@
 
+import BasketCalculation from "../BasketCalculation";
 import BasketList from "../BasketList";
 import ProductsContainer from "../ProductsContainer";
 
@@ -8,6 +9,7 @@ function App() {
     <div>
       <ProductsContainer />
       <BasketList />
+      <BasketCalculation />
     </div>
   );
 }

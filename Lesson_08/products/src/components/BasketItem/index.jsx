@@ -7,13 +7,16 @@ import {
   incrementAction,
 } from "../../store/reducer/basketReducer";
 
-export default function BasketItem({ id, count }) {
+export default function BasketItem({ id, title, price, count, discount }) {
   const dispatch = useDispatch();
+
+  const discPrice = (price - price * discount / 100).toFixed(2);
 
   return (
     <div className={s.basket_container}>
-      <p>id: {id}</p>
-      <p>count: {count}</p>
+      <p>{title}</p>
+      <p>Price: { discPrice }$ X {count} = {discPrice * count}$</p>
+      <p>Count: {count}</p>
       <div className={s.btns}>
         <button onClick={() => dispatch(decrementAction(id))}>-</button>
         <button onClick={() => dispatch(incrementAction(id))}>+</button>
