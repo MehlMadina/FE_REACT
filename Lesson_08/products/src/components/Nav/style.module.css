@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 0 40px;
+    background-color: lightblue;
+}
+
+.nav a {
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+}
+
+.nav a:hover {
+    color: #8686f8;
+    transition: 0.4s all;
+}
+
+ .nav .active {
+    color: #8686f8;
+}

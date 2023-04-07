@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addProductAction } from "../../store/reducer/productsReducer";
+import s from './style.module.css';
 
 export default function AddProduct() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ export default function AddProduct() {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className={s.form}>
       <input type="text" name="title" placeholder="Title" />
       <input type="number" name="price" placeholder="Price" />
       <input type="number" name="discount" placeholder="Discount" />
