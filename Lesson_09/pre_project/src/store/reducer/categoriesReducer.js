@@ -1,11 +1,11 @@
-const defaultState = [
-  "electronics",
-  "jewelery",
-  "men's clothing",
-  "women's clothing",
-];
+const defaultState = [];
+const LOAD_CATEGORIES = "LOAD_CATEGORIES";
 
+export const categoriesLoadAction = payload => ({type: LOAD_CATEGORIES, payload});
 
 export const categoriesReducer = (state = defaultState, action) => {
-  return state
+  if (action.type === LOAD_CATEGORIES) {
+    return action.payload;
+  }
+  return state;
 };
