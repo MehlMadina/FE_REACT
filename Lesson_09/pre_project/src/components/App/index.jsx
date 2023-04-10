@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import AllProductsPage from "../../pages/AllProductsPage";
 import BasketPage from "../../pages/BasketPage";
 import CategoriesPage from "../../pages/CategoriesPage";
 import NotFoundPage from "../../pages/NotFoundPage";
@@ -9,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { asyncLoadCategoriesAction } from "../../store/asyncAction/categories";
 import { asyncLoadProductsAction } from "../../store/asyncAction/products";
+import ProductsPage from "../../pages/ProductsPage";
 
 function App() {
 
@@ -25,7 +25,8 @@ useEffect(() => {
       <Routes>
         <Route path="/" element={<CategoriesPage />} />
         <Route path="/basket" element={<BasketPage />} />
-        <Route path="/products/all" element={<AllProductsPage />} />
+        <Route path="/products/all" element={<ProductsPage />} />
+        <Route path="/category/:category" element={<ProductsPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>

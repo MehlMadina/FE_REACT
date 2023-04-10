@@ -1,10 +1,14 @@
-import React from 'react';
-import s from './style.module.css';
+import React from "react";
+import s from "./style.module.css";
+import { Link } from "react-router-dom";
 
-export default function CategoriesItem({label}) {
+export default function CategoriesItem({ label }) {
+
+const link = `category/${label}`;
+
   return (
-    <div className={s.item}>
-        <p>{label}</p>
-    </div>
-  )
+    <Link to={link} className={s.item}>
+      {label}
+    </Link>
+  );
 }
