@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { asyncLoadCategoriesAction } from "../../store/asyncAction/categories";
 import { asyncLoadProductsAction } from "../../store/asyncAction/products";
 import ProductsPage from "../../pages/ProductsPage";
+import ProductDescriptionPage from "../../pages/ProductDescriptionPage";
 
 function App() {
 
@@ -27,6 +28,7 @@ useEffect(() => {
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/products/all" element={<ProductsPage />} />
         <Route path="/category/:category" element={<ProductsPage />} />
+        <Route path="/product/:id" element={<ProductDescriptionPage />}/>
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>
