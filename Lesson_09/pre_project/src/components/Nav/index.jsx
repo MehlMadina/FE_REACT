@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./style.module.css";
-import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import CustNavLink from "../CustNavLink";
 
 // export default function Nav() {
 //   const checkClass = ({ isActive }) => (isActive ? s.active : "");
@@ -20,22 +21,29 @@ import { NavLink } from "react-router-dom";
 //   );
 // }
 
+
+
 export default function Nav() {
+
+  const basket = useSelector(({basket}) => basket);
+  const totalCount = basket.reduce((acc, { count }) => acc + count, 0);
+
+
+
   const links = [
     { id: 1, label: "Категории", to: "/" },
     { id: 2, label: "Все товары", to: "/products/all" },
-    { id: 13, label: "Корзина", to: "/basket" },
+    { id: 3, label: "Корзина", to: "/basket", count: totalCount },
   ];
 
-  const checkClass = ({ isActive }) => isActive ? s.active : "";
 
   return (
     <nav className={s.nav}>
-      {links.map(({ id, label, to }) => (
-        <NavLink key={id} to={to} className={checkClass}>
-          {label}
-        </NavLink>
-      ))}
+      {
+        links.map(({ id, ...item}) => <CustNavLink key={id} {...item}/>)
+      }
     </nav>
-  );
+  )
 }
+  
+
