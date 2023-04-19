@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { addToCart } from "../../store/reducer/basketReducer";
 import { useDispatch } from "react-redux"; 
 
-export default function ProductsItem({ id, title, thumbnail }) {
+export default function ProductsItem({ id, title, thumbnail, price, discountPercentage }) {
 
   const dispatch = useDispatch();
 
@@ -15,6 +15,11 @@ export default function ProductsItem({ id, title, thumbnail }) {
       <Link to={link}>
         <img src={thumbnail} alt={title} />
         <p>{title}</p>
+        <div className={s.price_block}>
+          <p style={{textDecoration: 'line-through'}}>{price}$</p>
+          <p style={{color: 'red'}}>{(price - price * discountPercentage / 100).toFixed(2)}$</p>
+        </div>
+        
       </Link>
       <button onClick={() => dispatch(addToCart(id))}>Добавить в корзину</button>
     </div>
