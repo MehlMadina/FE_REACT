@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./style.module.css";
 import { useDispatch } from 'react-redux';
-import { todoChangeStatusAction, todoDeleteAction } from "../../store/reducer/toDoReducer";
+import { remove, changeStatus } from '../../store/slice/todoSlice';
 
 export default function ToDoItem({ id, title, done }) {
 
@@ -9,9 +9,9 @@ const dispatch = useDispatch();
 
   return (
     <div className={s.item}>
-        <input type="checkbox" checked={done} onChange={() => dispatch(todoChangeStatusAction(id))}/>
+        <input type="checkbox" checked={done} onChange={() => dispatch(changeStatus(id))}/>
         <p className={done ? s.title_done : ''}>{title}</p>
-        <button onClick={() => dispatch(todoDeleteAction(id))}>Remove</button>
+        <button onClick={() => dispatch(remove(id))}>Remove</button>
     </div>
   )
 }

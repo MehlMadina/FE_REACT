@@ -1,5 +1,6 @@
 import ToDoForm from "../ToDoForm";
 import ToDoList from "../ToDoList";
+import UserList from "../UserList";
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
     <div>
       <ToDoForm />
       <ToDoList/>
+      <UserList />
     </div>
   );
 }

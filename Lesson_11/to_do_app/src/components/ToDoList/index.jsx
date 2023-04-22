@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 export default function ToDoList() {
 
-const toDoList = useSelector(state => state.todo);
+const toDoList = useSelector(state => state.todo.list);
 
   return (
     <div className={s.container}>

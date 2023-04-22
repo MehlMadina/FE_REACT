@@ -1,9 +1,11 @@
 const TODO_DELETE = "TODO_DELETE";
 const TODO_CHANGE_STATUS = "TODO_CHANGE_STATUS";
+const TODO_ADD = "TODO_ADD";
 
 
 export const todoDeleteAction = (payload) => ({type: TODO_DELETE, payload});
 export const todoChangeStatusAction = (payload) => ({type: TODO_CHANGE_STATUS, payload});
+export const todoAddAction = (payload) => ({type: TODO_ADD, payload});
 
 const defaultState = [
   {
@@ -37,6 +39,8 @@ export const todoReducer = (state = defaultState, action) => {
 
     } else if (action.type === TODO_DELETE) {
         return state.filter(({ id }) => id !== action.payload);
+    } else if (action.type === TODO_ADD) {
+      return [...state, { id: Date.now(), title: action.payload, done: false }]
     } else {
         return state
     }
