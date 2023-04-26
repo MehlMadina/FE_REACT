@@ -1,4 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+export const fetchTodos = createAsyncThunk(
+  "todo/fetchTodos",
+  async () => {
+    const resp = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const data = await resp.json();
+    const clearData = data.map(({ id, title, completed }) => ({ id, title, done: completed }));
+    return clearData;
+  }
+) 
 
 export const todoSlice = createSlice({
   name: "todo",
@@ -25,6 +35,8 @@ export const todoSlice = createSlice({
         done: false,
       },
     ],
+    status: undefined,
+    error: undefined
   },
   reducers: {
 
@@ -41,7 +53,21 @@ export const todoSlice = createSlice({
       target.done = !target.done;
     },
   },
+  extraReducers: (builder) => {
+    builder
+          .addCase(fetchTodos.pending, (state) => {
+            state.status = "loading";
+          })
+          .addCase(fetchTodos.fulfilled, (state, { payload }) => {
+            state.status = "resolve";
+            state.list = payload;
+          })
+          .addCase(fetchTodos.rejected, (state, { payload }) => {
+            state.status = "rejected";
+            state.error = payload;
+          })
+  }
 });
 
-export const {add, remove, changeStatus } = todoSlice.actions;
+export const { add, remove, changeStatus } = todoSlice.actions;
 export default todoSlice.reducer;

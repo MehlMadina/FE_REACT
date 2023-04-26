@@ -3,11 +3,15 @@ import { useSelector } from "react-redux";
 import UserItem from "../UserItem";
 
 export default function UserList() {
-  const user = useSelector((state) => state.user.list);
+  const { list, status, error } = useSelector((state) => state.user);
+  
+  if (status === "rejected") {
+    alert(error);
+  }
 
   return (
     <div>
-      {user.map((item) => (
+      {list.map((item) => (
         <UserItem key={item.id} {...item} />
       ))}
     </div>
