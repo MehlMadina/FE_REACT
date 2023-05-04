@@ -1,0 +1,16 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 40px auto;
+    max-width: 300px;
+}
+
+.form input, .form select, .form button {
+    padding: 5px;
+}
+
+.error {
+    color: #f36161;
+    font-size: 10px;
+}
