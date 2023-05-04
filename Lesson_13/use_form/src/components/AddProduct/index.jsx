@@ -18,7 +18,8 @@ export default function AddProduct() {
         })}
         placeholder="Title"
       />
-      <p className={s.error}>{errors.title !== undefined ? errors.title.type : "" }</p>
+      {/* <p className={s.error}>{ errors.title !== undefined ? errors.title.type : "" }</p> */}
+      { <p className={s.error}>{ errors.title?.type }</p> }
       <input
         type='number'
         step="0.1"
