@@ -1,0 +1,16 @@
+.filter {
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    gap: 20px;
+    border: 2px solid black;
+}
+
+.filter input {
+    padding: 5px;
+}
+
+.filter input::-webkit-outer-spin-button,
+.filter input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
