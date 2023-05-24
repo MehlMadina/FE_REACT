@@ -1,6 +1,8 @@
+import CardsList from "../CardsList";
+import Feedback from "../Feedback";
+import Footer from "../Footer";
 import Main from "../Main";
 import Navbar from "../Navbar";
-import s from "./style.module.css";
 
 
 function App() {
@@ -8,6 +10,9 @@ function App() {
     <div>
       <Navbar />
       <Main />
+      <CardsList />
+      <Feedback />
+      <Footer />
     </div>
   );
 }
